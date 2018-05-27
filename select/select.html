@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: "Microsoft yahei";
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .inner{
+            max-width: 250px;
+            margin: 10px auto;
+            position: relative;
+        }
+        .input-wrap input{
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 14px;
+            height: 36px;
+            padding: 0 10px;
+            width: 100%;
+        }
+        ul.options{
+            box-shadow: 0px 0px 3px #ddd;
+            border: 1px solid #efefef;
+            padding: 10px 0;
+            position: absolute;
+            top: 40px;
+            width: 100%;
+        }
+        ul.options li{
+            line-height: 30px;
+            padding: 0 10px;
+        }
+        ul.options li:hover{
+            background: #f5f5f5;
+            cursor: pointer;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="select">
+            <select-cook></select-cook>
+    </div>
+    <script>
+        Vue.component('select-cook',{
+            template: `<div class="inner">
+                                       <div class="input-wrap" @click="showOptions = !showOptions">
+                                            <input type="text" readonly placeholder="please choose a cook" :value="selected">
+                                            <span class="iconfont"></span>
+                                        </div>
+                                        <ul class="options" v-show="showOptions">
+                                            <li v-for="(item,index) in options" :key="index" @click="isShow(item.value)">{{item.value}}</li>
+                                        </ul>
+                                    </div>`,
+            data() {
+                return {
+                    options: [
+                        {
+                            value: "tomato"
+                        },
+                        {
+                            value: "egg"
+                        },
+                        {
+                            value: "meat"
+                        },
+                        {
+                            value: "chicken"
+                        },
+                        {
+                            value: "cucember"
+                        }
+                    ],
+                    showOptions: false,
+                    selected: ""
+                }
+            },
+            methods:{
+                isShow(val) {
+                    this.showOptions = false;
+                    if(val !== this.selected){
+                        this.selected = val;
+                    }
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#select',
+            components: 'select-cook'
+        });
+    </script>
+</body>
+</html>
