@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <button v-on="{ mouseenter: onEnter, mouseleave: onOut }" @click="onClick">click</button>
+    <form @keyup.enter="onKeyEnter" @submit.prevent="onSubmit($event)">
+      <input type="text">
+      <button type="submit">sub</button>
+    </form>
+  </div>
+  <script src='../lib/vue.js'></script>
+  <script src='js/main.js'></script>
+</body>
+</html>

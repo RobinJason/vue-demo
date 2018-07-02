@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <label for="">
+      boy
+      <input v-model="sex" value="male" type="radio">
+    </label>
+    <label for="">
+      girl
+      <input v-model="sex" value="female" type="radio">
+    </label>
+    <pre>{{sex}}</pre>
+
+    <label for="">
+      boy
+      <input v-model="like" value="male" type="checkbox">
+    </label>
+    <label for="">
+      girl
+      <input v-model="like" value="female" type="checkbox">
+    </label>
+    <pre>{{like}}</pre>
+
+    <textarea v-model="article"></textarea>
+    <pre>{{article}}</pre>
+
+    <div>where are u from?</div>
+    <select v-model="from">
+      <option value="1">china</option>
+      <option value="2">not china</option>
+    </select>
+    <pre>{{from}}</pre>
+
+    <div>what place u want to go?</div>
+    <select v-model="travelTo" multiple>
+      <option value="1">China</option>
+      <option value="2">Usa</option>
+      <option value="3">Japan</option>
+      <option value="4">US</option>
+      <option value="5">Canada</option>
+      <option value="6">Brazil</option>
+    </select>
+    <pre>{{travelTo}}</pre>
+  </div>
+  <script src='../lib/vue.js'></script>
+  <script src='js/main.js'></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      background: #a10;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <a :href="url" :class="{active: isActive}">
+      here
+      <!--<img v-bind:src="img" alt="">-->
+    </a>
+  </div>
+  <script src='../lib/vue.js'></script>
+  <script src='js/main.js'></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <thead>
+        <th>学科</th>
+        <th>分数</th>
+      </thead>
+      <tbody>
+        <tr v-for="res in result">
+          <td>{{res.subject}}</td>
+          <td><input type="text" v-model.number="res.score"></td>
+        </tr>
+        <tr>
+          <td>总分</td>
+          <td>{{sum}}</td>
+        </tr>
+        <tr>
+          <td>平均分</td>
+          <td>{{average}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src='../lib/vue.js'></script>
+  <script src='js/main.js'></script>
+</body>
+</html>
