@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>todolist</title>
+  <style>
+    *{
+      font-family: 'Microsoft yahei';
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+    button,input,textarea{
+      outline: none;
+    }
+  </style>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <header id="header">ToDoList</header>
+  <!--<img src="1.PNG" alt="">-->
+  <section id="todolist">
+    <add-input @subdata="addToDo"></add-input>
+    <todo-list :todo-data="todoData"></todo-list>
+    <done-list :todo-data="todoData"></done-list>
+    <rubbish :todo-data="todoData"></rubbish>
+  </section>
+  <template id="add-input" >
+    <div class="add-wrapper">
+      <div class="base-add-wrapper">
+        <input type="text" placeholder="新增一个todo项目" v-model="newItem.title" :class="{focus: isInputFocus}" @focus="inputFocus" @blur="inputBlur"/>
+        <button class="icon add-btn" type="button" @click="isExtendDetail"></button>
+      </div>
+      <div class="more-add-wrapper" v-show="isMoreShow">
+        <textarea placeholder="详情描述..." v-model="newItem.content"></textarea>
+        <h4>定时提醒</h4>
+        <input type="date" v-model="newItem.date"/>
+        <button type="button" @click="appendItem">完成</button>
+      </div>
+    </div>
+  </template>
+  <template id="todo-list">
+    <div class="todo-list-wrapper">
+      <ul>
+        <li v-for="(item,index) in toDoList" :key="index">
+          <div class="base-info"><!--基本信息-->
+            <button class="icon done-btn" type="button"><i></i></button>
+            <span>{{item.title}}</span><!--标题-->
+            <button class="icon more-btn" type="button" @click="isExtendDetail(index)"></button>
+            <button class="icon edit-btn" type="button"></button>
+            <button class="icon del-btn" type="button"></button>
+          </div>
+          <div class="detail-info" v-show="isMoreShow[index]"><!--详细信息-->
+            <time v-show="item.date"><!--提醒日期-->
+              <i class="icon time"></i>
+              <span>{{item.date}}</span>
+            </time>
+            <p v-show="item.content">{{item.content}}</p><!--详情-->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </template>
+  <template id="done-list">
+    <div class="done-list-wrapper">
+      <header>已完成</header>
+      <ul v-show="doneList.length">
+        <li v-for="(item,index) in doneList" :key="index">
+          <div class="base-info">
+            <button class="icon done-btn" type="button"><i></i></button>
+            <del>{{item.title}}</del>
+            <button class="icon more-btn" type="button" @click="isExtendDetail(index)"></button>
+            <button class="icon del-btn" type="button"></button>
+          </div>
+          <div class="detail-info" v-show="isMoreShow[index]">
+            <time v-show="item.date">
+              <i class="icon time"></i>
+              <span>{{item.date}}</span>
+            </time>
+            <p v-show="item.content">{{item.content}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </template>
+  <template id="rubbish">
+    <div class="rubbish-wrapper">
+      <i class="icon rubbish-btn">
+        <span>1</span>
+      </i>
+    </div>
+  </template>
+
+  <script src="lib/vue.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
