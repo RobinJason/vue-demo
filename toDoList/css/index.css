@@ -112,13 +112,18 @@ body{
   width: 100%;
 }
 .more-add-wrapper button{
-  background: dodgerblue;
+  background: #1E90FF;
   border: none;
   border-radius: 3px;
   color: #fff;
   margin: 10px 0;
   height: 36px;
   width: 100%;
+}
+.more-add-wrapper button:hover{
+  background: rgba(30,144,255,0.8);
+  cursor: pointer;
+  transition: all .2s;
 }
 
 /*未完成列表组件*/

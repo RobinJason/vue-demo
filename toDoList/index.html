@@ -22,7 +22,7 @@
   <header id="header">ToDoList</header>
   <!--<img src="1.PNG" alt="">-->
   <section id="todolist">
-    <add-input @subdata="addToDo"></add-input>
+    <add-input @subdata="addToDo" @editdata="editToDo"></add-input>
     <todo-list :todo-data="todoData"></todo-list>
     <done-list :todo-data="todoData"></done-list>
     <rubbish :todo-data="todoData"></rubbish>
@@ -30,26 +30,26 @@
   <template id="add-input" >
     <div class="add-wrapper">
       <div class="base-add-wrapper">
-        <input type="text" placeholder="新增一个todo项目" v-model="newItem.title" :class="{focus: isInputFocus}" @focus="inputFocus" @blur="inputBlur"/>
+        <input type="text" placeholder="新增一个todo项目" v-model="item.title" :class="{focus: isInputFocus}" @focus="inputFocus" @blur="inputBlur"/>
         <button class="icon add-btn" type="button" @click="isExtendDetail"></button>
       </div>
       <div class="more-add-wrapper" v-show="isMoreShow">
-        <textarea placeholder="详情描述..." v-model="newItem.content"></textarea>
+        <textarea placeholder="详情描述..." v-model="item.content"></textarea>
         <h4>定时提醒</h4>
-        <input type="date" v-model="newItem.date"/>
+        <input type="date" v-model="item.date"/>
         <button type="button" @click="appendItem">完成</button>
       </div>
     </div>
   </template>
   <template id="todo-list">
-    <div class="todo-list-wrapper">
+    <div class="todo-list-wrapper" v-show="toDoList.length">
       <ul>
         <li v-for="(item,index) in toDoList" :key="index">
           <div class="base-info"><!--基本信息-->
-            <button class="icon done-btn" type="button"><i></i></button>
+            <button class="icon done-btn" type="button" @click="completeItemBtn(index)"><i></i></button>
             <span>{{item.title}}</span><!--标题-->
             <button class="icon more-btn" type="button" @click="isExtendDetail(index)"></button>
-            <button class="icon edit-btn" type="button"></button>
+            <button class="icon edit-btn" type="button" @click="editItemBtn(index)"></button>
             <button class="icon del-btn" type="button"></button>
           </div>
           <div class="detail-info" v-show="isMoreShow[index]"><!--详细信息-->
@@ -69,7 +69,7 @@
       <ul v-show="doneList.length">
         <li v-for="(item,index) in doneList" :key="index">
           <div class="base-info">
-            <button class="icon done-btn" type="button"><i></i></button>
+            <button class="icon done-btn" type="button" @click="cancelCompleteBtn(index)"><i></i></button>
             <del>{{item.title}}</del>
             <button class="icon more-btn" type="button" @click="isExtendDetail(index)"></button>
             <button class="icon del-btn" type="button"></button>
