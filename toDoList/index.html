@@ -30,11 +30,11 @@
   <template id="add-input" >
     <div class="add-wrapper">
       <div class="base-add-wrapper">
-        <input type="text" placeholder="新增一个todo项目" v-model="item.title" :class="{focus: isInputFocus}" @focus="inputFocus" @blur="inputBlur"/>
+        <input type="text" placeholder="新增一个todo项目" v-model="item.title" :class="{focus: isInputFocus}" v-on="{ focus: inputFocus,blur: inputFocus }"/>
         <button class="icon add-btn" type="button" @click="isExtendDetail"></button>
       </div>
       <div class="more-add-wrapper" v-show="isMoreShow">
-        <textarea placeholder="详情描述..." v-model="item.content"></textarea>
+        <textarea placeholder="详情描述..." v-model="item.content" :class="{focus: isTextareaFocus}" v-on="{ focus: textareaFocus,blur: textareaFocus }"></textarea>
         <h4>定时提醒</h4>
         <input type="date" v-model="item.date"/>
         <button type="button" @click="appendItem">完成</button>
@@ -53,7 +53,7 @@
             <button class="icon del-btn" type="button"></button>
           </div>
           <div class="detail-info" v-show="isMoreShow[index]"><!--详细信息-->
-            <time v-show="item.date"><!--提醒日期-->
+            <time v-show="item.date" :class="(item.isExpire == 2)? 'expired' : (item.isExpire ? 'alert' : '')"><!--提醒日期-->
               <i class="icon time"></i>
               <span>{{item.date}}</span>
             </time>
@@ -75,7 +75,7 @@
             <button class="icon del-btn" type="button"></button>
           </div>
           <div class="detail-info" v-show="isMoreShow[index]">
-            <time v-show="item.date">
+            <time v-show="item.date" :class="(item.isExpire == 2)? 'expired' : (item.isExpire ? 'alert' : '')">
               <i class="icon time"></i>
               <span>{{item.date}}</span>
             </time>

@@ -9,11 +9,12 @@ Vue.component('add-input',{
     return {
       isMoreShow: false,
       isInputFocus: false,
+      isTextareaFocus: false,
       item: {
         title: '',
         content: '',
         date: '',
-        isExpire: false
+        isExpire: 0
       },
       isEdit: false,
       itemIndex: ''
@@ -21,10 +22,10 @@ Vue.component('add-input',{
   },
   methods: {
     inputFocus() {
-      this.isInputFocus = true;
+      this.isInputFocus = !this.isInputFocus;
     },
-    inputBlur() {
-      this.isInputFocus = false;
+    textareaFocus(){
+      this.isTextareaFocus = !this.isTextareaFocus;
     },
     isExtendDetail() {
       this.isMoreShow = !this.isMoreShow;
@@ -77,6 +78,7 @@ Vue.component('todo-list',{
     },
     completeItemBtn(index){ // 发送端，触发事件，完成项目
       eventBus.$emit('completeItem',this.toDoList[index]);
+      this.isMoreShow.splice(index,1); // 删除旧的展开布尔值
       this.toDoList.splice(index,1);
     }
   },
@@ -85,12 +87,12 @@ Vue.component('todo-list',{
     for(let i=0;i<this.toDoList.length;i++){
       this.isMoreShow.push(false);
     }
-    eventBus.$on('cancelComplete',(obj) => {
+    eventBus.$on('cancelComplete',(obj) => {  //接收端，绑定事件，取消完成项目
       this.toDoList.push(obj);
+      this.isMoreShow.push(false); // 新增展开布尔值
     });
   }
 });
-
 
 /* 已完成组件 */
 Vue.component('done-list',{
@@ -113,6 +115,7 @@ Vue.component('done-list',{
     cancelCompleteBtn(index){ // 发送端，触发事件，取消完成
       eventBus.$emit('cancelComplete',this.doneList[index]);
       this.doneList.splice(index,1);
+      this.isMoreShow.splice(index,1);
     }
   },
   created(){
@@ -122,6 +125,7 @@ Vue.component('done-list',{
     }
     eventBus.$on('completeItem',(obj) => { // 接收端，绑定事件
       this.doneList.unshift(obj);
+      this.isMoreShow.unshift(false);
     });
   }
 });
@@ -152,10 +156,28 @@ new Vue({
     todoData: {
       todo: [
         {
+          title: '读书',
+          content: '读📕',
+          date: '2018-09-20',
+          isExpire: 0
+        },
+        {
+          title: '编程',
+          content: 'coding🍳',
+          date: '2018-07-09',
+          isExpire: 1
+        },
+        {
           title: '弹吉他',
           content: '吉他吉他吉他🎸',
           date: '2018-06-05',
-          isExpire: true
+          isExpire: 2
+        },
+        {
+          title: '画个画',
+          content: '🎨',
+          date: '2018-04-18',
+          isExpire: 2
         }
       ],
       done: [
@@ -163,13 +185,13 @@ new Vue({
           title: '买西红柿',
           content: '',
           date: '2018-05-12',
-          isExpire: true
+          isExpire: 2
         },
         {
           title: '买茄子',
           content: '买一个圆茄子、长茄子',
           date: '',
-          isExpire: false
+          isExpire: 0
         }
       ],
       trash: [
@@ -177,14 +199,14 @@ new Vue({
           title: '用烤箱做一个蛋糕🎂',
           content: '美滋滋~',
           date: '',
-          isExpire: false
+          isExpire: 0
         }
       ],
       date: ''
     }
   },
   methods: {
-    formatDate(){
+    formatDate(){ //格式化日期，yyyy-MM-dd
       let today = new Date(),y,m,d;
 
       y = today.getFullYear();
@@ -195,6 +217,19 @@ new Vue({
       d = d.length>1? d : 0+d;
 
       return y+'-'+m+'-'+d;
+    },
+    compareDate(todayStr,pastDateStr){ //比较日期
+      let isExpire = 0,
+          compareSec;
+      compareSec = (new Date(todayStr).valueOf() - 0) - (new Date(pastDateStr).valueOf() - 0);
+      if(pastDateStr!==''){
+        if(compareSec>0){
+          isExpire = 2;
+        }else if(compareSec==0){
+          isExpire = 1;
+        }
+      }
+      return isExpire;
     },
     addToDo(obj){
       let todo = this.todoData.todo;
@@ -207,7 +242,18 @@ new Vue({
     }
   },
   created(){
-    this.todoData.date = this.$options.methods.formatDate();
+    let data = this.todoData;
+    data.date = this.$options.methods.formatDate();
+    for(let a in data){
+      let itemData = data[a];
+      if(a=='date'){
+        break;
+      }
+      for(let i = 0; i < itemData.length; i++ ){
+        let itemSubObj = itemData[i];
+        itemSubObj.isExpire = this.$options.methods.compareDate(data.date,itemSubObj.date);
+      }
+    }
   }
 });
 
@@ -219,4 +265,8 @@ new Vue({
 *
 * */
 
-// TODO 过期显示功能、删除功能、提醒功能、回收站功能、localstorage的引入
+// DONE 过期显示功能、删除功能
+
+// TODO 提醒功能、回收站功能、localstorage的引入
+
+// FIXED 待做列表和已完成列表，如果有项目是展开的状态，把它加进另外一个列表，再回到曾经的列表，它仍旧是展开的
