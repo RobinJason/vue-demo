@@ -19,14 +19,20 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <header id="header">ToDoList</header>
-  <!--<img src="1.PNG" alt="">-->
-  <section id="todolist">
+  <header id="header" :class="{alert: isAlert}">
+    <i class="icon alert-clock"></i>
+    <alert v-cloak>{{alertItem}}</alert>
+  </header>
+  <template id="alert">
+    <span><slot></slot></span>
+  </template>
+
+  <main id="todolist">
     <add-input @subdata="addToDo" @editdata="editToDo"></add-input>
     <todo-list :todo-data="todoData"></todo-list>
     <done-list :todo-data="todoData"></done-list>
     <rubbish :todo-data="todoData"></rubbish>
-  </section>
+  </main>
   <template id="add-input" >
     <div class="add-wrapper">
       <div class="base-add-wrapper">

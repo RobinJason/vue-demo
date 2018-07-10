@@ -4,8 +4,11 @@ html,body{
 body{
   background: #f9f8f9 url("../img/bg.png") repeat center center;
 }
+[v-cloak] {
+  display: none;
+}
+/*头部组件*/
 #header{
-  line-height: 50px;
   background: #1E90FF;
   -webkit-box-shadow: 0px 1px 3px #164993;
   -moz-box-shadow: 0px 1px 3px #164993;
@@ -14,6 +17,71 @@ body{
   font-size: 24px;
   text-align: center;
 }
+#header.alert{
+  background: #ffae1b;
+  -webkit-box-shadow: 0px 1px 3px #ab7400;
+  -moz-box-shadow: 0px 1px 3px #ab7400;
+  box-shadow: 0px 1px 3px #ab7400;
+  transition: all .2s;
+}
+#header i.alert-clock{
+  background: transparent url("../img/logo_clock.png") no-repeat center center;
+  background-size: 80% 80%;
+  display: inline-block;
+  vertical-align: middle;
+  height: 60px;
+  width: 60px;
+}
+#header.alert i.alert-clock{
+  animation: alert 2s;
+  -webkit-animation: alert 2s;
+  -moz-animation: alert 2s;
+  -ms-animation: alert 2s;
+}
+#header span{
+  vertical-align: middle;
+}
+@-webkit-keyframes alert {
+  0% { transform: rotate(-30deg);  }
+  10% { transform: rotate(30deg);  }
+  20% { transform: rotate(-15deg);  }
+  30% { transform: rotate(15deg);  }
+  40% { transform: rotate(-30deg);  }
+  50% { transform: rotate(30deg);  }
+  60% { transform: rotate(-15deg);  }
+  70% { transform: rotate(15deg);  }
+  80% { transform: rotate(-5deg);  }
+  90% { transform: rotate(5deg);  }
+  100% {  }
+}
+@-moz-keyframes alert {
+  0% { transform: rotate(-30deg);  }
+  10% { transform: rotate(30deg);  }
+  20% { transform: rotate(-15deg);  }
+  30% { transform: rotate(15deg);  }
+  40% { transform: rotate(-30deg);  }
+  50% { transform: rotate(30deg);  }
+  60% { transform: rotate(-15deg);  }
+  70% { transform: rotate(15deg);  }
+  80% { transform: rotate(-5deg);  }
+  90% { transform: rotate(5deg);  }
+  100% {  }
+}
+@keyframes alert {
+  0% { transform: rotate(-30deg);  }
+  10% { transform: rotate(30deg);  }
+  20% { transform: rotate(-15deg);  }
+  30% { transform: rotate(15deg);  }
+  40% { transform: rotate(-30deg);  }
+  50% { transform: rotate(30deg);  }
+  60% { transform: rotate(-15deg);  }
+  70% { transform: rotate(15deg);  }
+  80% { transform: rotate(-5deg);  }
+  90% { transform: rotate(5deg);  }
+  100% {  }
+}
+
+/*主体*/
 #todolist{
   background: rgba(255,255,255,0.8);
   overflow: hidden;
@@ -430,6 +498,46 @@ body{
 }
 .done-list-wrapper ul li div.detail-info p{
   padding: 5px 10px 10px;
+}
+
+/*提醒组件*/
+.clock-wrapper{
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+}
+.clock-wrapper i.clock-btn{
+  background: transparent url("../img/clock.png") no-repeat center center;
+  background-size: 80% 80%;
+  display: block;
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+.clock-wrapper i.clock-btn.alert{
+  background-image: url("../img/clock_alert.png");
+}
+.clock-wrapper i.clock-btn:hover{
+  background-image: url("../img/clock_hover.png");
+  cursor: pointer;
+  transition: all .2s;
+}
+.clock-wrapper i.clock-btn.alert:hover{
+  background-image: url("");
+}
+.clock-wrapper i.clock-btn span{
+  background: #f5ab00;
+  border-radius: 50%;
+  color: #fff;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  text-align: center;
 }
 
 /*垃圾桶组件*/

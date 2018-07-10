@@ -1,7 +1,5 @@
 /* 代理商 - 事件车 */
-var eventBus = new Vue({
-
-});
+var eventBus = new Vue({});
 /* 新增&修改组件 */
 Vue.component('add-input',{
   template: '#add-input',
@@ -150,6 +148,44 @@ Vue.component('rubbish',{
   }
 });
 
+/* 提醒组件 */
+Vue.component('alert',{
+  template: '#alert',
+  props: ['alertList'],
+  data(){
+    return {
+
+    }
+  }
+});
+// header root
+new Vue({
+  el: '#header',
+  data: {
+    isAlert: false,
+    alertList: []
+  },
+  computed: {
+    alertItem() {
+      let arr = this.alertList,
+          title = '';
+      title = arr.join('、') || 'ToDoList';
+      return title;
+    }
+  },
+  created(){
+    eventBus.$on('alertItem',(arr) => {
+      setTimeout(()=>{
+        this.isAlert = true; // 修改class
+        for(var a in arr){
+          this.alertList.push(arr[a]); // 修改提示数组
+        }
+      },2000);
+    });
+  }
+});
+
+// toDoList root
 new Vue({
   el: '#todolist',
   data: {
@@ -158,7 +194,7 @@ new Vue({
         {
           title: '读书',
           content: '读📕',
-          date: '2018-09-20',
+          date: '2018-07-09',
           isExpire: 0
         },
         {
@@ -170,13 +206,13 @@ new Vue({
         {
           title: '弹吉他',
           content: '吉他吉他吉他🎸',
-          date: '2018-06-05',
+          date: '2018-07-09',
           isExpire: 2
         },
         {
           title: '画个画',
           content: '🎨',
-          date: '2018-04-18',
+          date: '2018-07-09',
           isExpire: 2
         }
       ],
@@ -203,7 +239,8 @@ new Vue({
         }
       ],
       date: ''
-    }
+    },
+    alertData: []
   },
   methods: {
     formatDate(){ //格式化日期，yyyy-MM-dd
@@ -231,31 +268,41 @@ new Vue({
       }
       return isExpire;
     },
-    addToDo(obj){
+    addToDo(obj){ // addInput子组件调用方法：新增项
       let todo = this.todoData.todo;
       todo.push(obj);
     },
-    editToDo(obj,index){
+    editToDo(obj,index){ //  addInput子组件调用方法：修改项
       let todo = this.todoData.todo;
       this.$set(todo,index,obj);
       /* TODO 需要改进 */
     }
   },
   created(){
-    let data = this.todoData;
+    let data = this.todoData,
+        alertData = this.alertData;
     data.date = this.$options.methods.formatDate();
     for(let a in data){
       let itemData = data[a];
-      if(a=='date'){
+      if(a == 'date'){
         break;
       }
       for(let i = 0; i < itemData.length; i++ ){
-        let itemSubObj = itemData[i];
-        itemSubObj.isExpire = this.$options.methods.compareDate(data.date,itemSubObj.date);
+        let itemSubObj = itemData[i],
+            num = this.$options.methods.compareDate(data.date,itemSubObj.date);
+        itemSubObj.isExpire = num; // 修改更新所有item对应的过期提示
+        if(a == 'todo' && num == 1) { // 今日有提醒时，触发事件
+          //this.alertData.push(itemSubObj);
+          alertData.push(itemSubObj.title);
+        }
       }
+    }
+    if(alertData.length){
+      eventBus.$emit('alertItem',alertData);
     }
   }
 });
+
 
 /*vue踩坑总结：
 * 1、$emit触发事件时，事件名不能用驼峰或连线写法，只能小写
