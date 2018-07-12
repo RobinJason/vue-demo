@@ -75,13 +75,17 @@ Vue.component('todo-list',{
       eventBus.$emit('editItem',this.toDoList[index],index);
     },
     completeItemBtn(index){ // 发送端，触发事件，完成项目
+      let alertData;
       eventBus.$emit('completeItem',this.toDoList[index]);
       this.isMoreShow.splice(index,1); // 删除旧的展开布尔值
       this.toDoList.splice(index,1);
+      //修改提醒功能提示的内容，直接触发父组件函数
+      this.$parent.changeAlertList();
     }
   },
   created(){
     this.toDoList = this.todoData.todo;
+    this.today = this.todoData.date;
     for(let i=0;i<this.toDoList.length;i++){
       this.isMoreShow.push(false);
     }
@@ -99,7 +103,7 @@ Vue.component('done-list',{
   data(){
     return {
       isMoreShow: [],
-      doneList: []
+      doneList: [],
     }
   },
   methods:{
@@ -114,10 +118,18 @@ Vue.component('done-list',{
       eventBus.$emit('cancelComplete',this.doneList[index]);
       this.doneList.splice(index,1);
       this.isMoreShow.splice(index,1);
-    }
+      //修改提醒功能提示的内容，直接触发父组件函数
+      this.$parent.changeAlertList();
+    },
+
   },
   created(){
-    this.doneList = this.todoData.done;
+    /*如果使用下面的写法，相当于深拷贝，子组件修改，父组件就不会变了*/
+    /*for(let a in this.todoData.done){
+      this.doneList.push(this.todoData.done[a]);
+    }*/
+    this.doneList = this.todoData.done; // 浅拷贝，引用
+    this.today = this.todoData.date;
     for(let i=0;i<this.doneList.length;i++){
       this.isMoreShow.push(false);
     }
@@ -169,18 +181,37 @@ new Vue({
     alertItem() {
       let arr = this.alertList,
           title = '';
-      title = arr.join('、') || 'ToDoList';
+      title = arr.length? arr.join('、') : 'ToDoList';
+      //debugger
       return title;
+    },
+    alertClass() {
+      return this.isAlert;
+    }
+  },
+  methods: {
+    changeAlertItem(arr,vm){
+      var data = vm.$data;
+      setTimeout(()=>{ //延时添加动画效果
+        data.isAlert = true; // 修改class
+        data.alertList.length = 0
+        for(var a in arr){
+          data.alertList.push(arr[a]); // 修改提示数组
+        }
+      },1000);
+    },
+    changeDefaultTitle(vm){
+      vm.alertList.splice(0)
+      vm.isAlert = false;
     }
   },
   created(){
     eventBus.$on('alertItem',(arr) => {
-      setTimeout(()=>{
-        this.isAlert = true; // 修改class
-        for(var a in arr){
-          this.alertList.push(arr[a]); // 修改提示数组
-        }
-      },2000);
+      if(arr.length){
+        this.$options.methods.changeAlertItem(arr,this);
+      }else{
+        this.$options.methods.changeDefaultTitle(this);
+      }
     });
   }
 });
@@ -194,25 +225,25 @@ new Vue({
         {
           title: '读书',
           content: '读📕',
-          date: '2018-07-09',
+          date: '2018-07-12',
           isExpire: 0
         },
         {
           title: '编程',
           content: 'coding🍳',
-          date: '2018-07-09',
+          date: '2018-07-12',
           isExpire: 1
         },
         {
           title: '弹吉他',
           content: '吉他吉他吉他🎸',
-          date: '2018-07-09',
+          date: '2018-07-12',
           isExpire: 2
         },
         {
           title: '画个画',
           content: '🎨',
-          date: '2018-07-09',
+          date: '2018-07-12',
           isExpire: 2
         }
       ],
@@ -220,7 +251,7 @@ new Vue({
         {
           title: '买西红柿',
           content: '',
-          date: '2018-05-12',
+          date: '2018-07-10',
           isExpire: 2
         },
         {
@@ -241,6 +272,18 @@ new Vue({
       date: ''
     },
     alertData: []
+  },
+  computed:{
+    alertList(){ //监听todo数据的变化
+      let arr = [],
+          data = this.todoData;
+      data.todo.forEach((item) => {
+        if(item.date===data.date){
+          arr.push(item.title);
+        }
+      });
+      return arr; //返回今天的任务数组
+    }
   },
   methods: {
     formatDate(){ //格式化日期，yyyy-MM-dd
@@ -276,6 +319,9 @@ new Vue({
       let todo = this.todoData.todo;
       this.$set(todo,index,obj);
       /* TODO 需要改进 */
+    },
+    changeAlertList(){
+      eventBus.$emit('alertItem',this.alertList);  // 触发alert组件事件
     }
   },
   created(){
@@ -291,7 +337,7 @@ new Vue({
         let itemSubObj = itemData[i],
             num = this.$options.methods.compareDate(data.date,itemSubObj.date);
         itemSubObj.isExpire = num; // 修改更新所有item对应的过期提示
-        if(a == 'todo' && num == 1) { // 今日有提醒时，触发事件
+        if(a == 'todo' && num == 1) { // 初始化，今日有提醒时，触发事件
           //this.alertData.push(itemSubObj);
           alertData.push(itemSubObj.title);
         }
@@ -312,8 +358,8 @@ new Vue({
 *
 * */
 
-// DONE 过期显示功能、删除功能
+// DONE 过期显示功能、提醒功能
 
-// TODO 提醒功能、回收站功能、localstorage的引入
+// TODO 清除功能、回收站功能、localstorage的引入
 
 // FIXED 待做列表和已完成列表，如果有项目是展开的状态，把它加进另外一个列表，再回到曾经的列表，它仍旧是展开的
