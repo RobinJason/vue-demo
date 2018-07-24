@@ -1,14 +1,18 @@
-html,body{
+@charset "UTF-8";
+html, body {
   height: 100%;
 }
-body{
+
+body {
   background: #f9f8f9 url("../img/bg.png") repeat center center;
 }
+
 [v-cloak] {
   display: none;
 }
+
 /*头部组件*/
-#header{
+#header {
   background: #1E90FF;
   -webkit-box-shadow: 0px 1px 3px #164993;
   -moz-box-shadow: 0px 1px 3px #164993;
@@ -17,14 +21,20 @@ body{
   font-size: 24px;
   text-align: center;
 }
-#header.alert{
+#header.alert {
   background: #ffae1b;
   -webkit-box-shadow: 0px 1px 3px #ab7400;
   -moz-box-shadow: 0px 1px 3px #ab7400;
   box-shadow: 0px 1px 3px #ab7400;
   transition: all .2s;
 }
-#header i.alert-clock{
+#header.alert i.alert-clock {
+  animation: alert 2s;
+  -webkit-animation: alert 2s;
+  -moz-animation: alert 2s;
+  -ms-animation: alert 2s;
+}
+#header i.alert-clock {
   background: transparent url("../img/logo_clock.png") no-repeat center center;
   background-size: 80% 80%;
   display: inline-block;
@@ -32,58 +42,109 @@ body{
   height: 60px;
   width: 60px;
 }
-#header.alert i.alert-clock{
-  animation: alert 2s;
-  -webkit-animation: alert 2s;
-  -moz-animation: alert 2s;
-  -ms-animation: alert 2s;
-}
-#header span{
+#header span {
   vertical-align: middle;
 }
+
 @-webkit-keyframes alert {
-  0% { transform: rotate(-30deg);  }
-  10% { transform: rotate(30deg);  }
-  20% { transform: rotate(-15deg);  }
-  30% { transform: rotate(15deg);  }
-  40% { transform: rotate(-30deg);  }
-  50% { transform: rotate(30deg);  }
-  60% { transform: rotate(-15deg);  }
-  70% { transform: rotate(15deg);  }
-  80% { transform: rotate(-5deg);  }
-  90% { transform: rotate(5deg);  }
-  100% {  }
+  0% {
+    transform: rotate(-30deg);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  70% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(5deg);
+  }
 }
 @-moz-keyframes alert {
-  0% { transform: rotate(-30deg);  }
-  10% { transform: rotate(30deg);  }
-  20% { transform: rotate(-15deg);  }
-  30% { transform: rotate(15deg);  }
-  40% { transform: rotate(-30deg);  }
-  50% { transform: rotate(30deg);  }
-  60% { transform: rotate(-15deg);  }
-  70% { transform: rotate(15deg);  }
-  80% { transform: rotate(-5deg);  }
-  90% { transform: rotate(5deg);  }
-  100% {  }
+  0% {
+    transform: rotate(-30deg);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  70% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(5deg);
+  }
 }
 @keyframes alert {
-  0% { transform: rotate(-30deg);  }
-  10% { transform: rotate(30deg);  }
-  20% { transform: rotate(-15deg);  }
-  30% { transform: rotate(15deg);  }
-  40% { transform: rotate(-30deg);  }
-  50% { transform: rotate(30deg);  }
-  60% { transform: rotate(-15deg);  }
-  70% { transform: rotate(15deg);  }
-  80% { transform: rotate(-5deg);  }
-  90% { transform: rotate(5deg);  }
-  100% {  }
+  0% {
+    transform: rotate(-30deg);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  60% {
+    transform: rotate(-15deg);
+  }
+  70% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(5deg);
+  }
 }
-
 /*主体*/
-#todolist{
-  background: rgba(255,255,255,0.8);
+#todolist {
+  background: rgba(255, 255, 255, 0.8);
   overflow: hidden;
   margin: 50px auto;
   padding: 0 100px;
@@ -91,21 +152,22 @@ body{
 }
 
 /*新增组件*/
-.add-wrapper{
+.add-wrapper {
   border: 1px solid #ddd;
-  -webkit-box-shadow: 0px 1px 3px #cfcfcf;
-  -moz-box-shadow: 0px 1px 3px #cfcfcf;
-  box-shadow: 0px 1px 3px #cfcfcf;
+  -webkit-box-shadow: 0 1px 3px #cfcfcf;
+  -moz-box-shadow: 0 1px 3px #cfcfcf;
+  box-shadow: 0 1px 3px #cfcfcf;
   margin-top: 50px;
 }
+
 /*add输入框*/
-.base-add-wrapper{
+.base-add-wrapper {
   background: #edeced;
   height: 40px;
   padding-right: 40px;
   position: relative;
 }
-.base-add-wrapper input{
+.base-add-wrapper input {
   background: transparent;
   border: none;
   -webkit-box-sizing: border-box;
@@ -115,11 +177,11 @@ body{
   padding: 5px 10px;
   width: 100%;
 }
-.base-add-wrapper input.focus{
+.base-add-wrapper input.focus {
   background: #fff;
   transition: all .2s;
 }
-.base-add-wrapper button{
+.base-add-wrapper button {
   position: absolute;
   top: 0;
   height: 40px;
@@ -134,26 +196,27 @@ body{
   height: 40px;
   text-align: center;
 }
-.base-add-wrapper button:hover{
+.base-add-wrapper button:hover {
   background-color: #d1d0d1;
   color: #333;
   cursor: pointer;
 }
-.base-add-wrapper .icon.add-btn{
+.base-add-wrapper .icon.add-btn {
   background-image: url("../img/add.png");
   background-size: 50%;
   right: 0px;
 }
-.base-add-wrapper .icon.add-btn:hover{
+.base-add-wrapper .icon.add-btn:hover {
   background-image: url("../img/add_hover.png");
 }
+
 /*添加详情功能*/
-.more-add-wrapper{
+.more-add-wrapper {
   background: #fff;
   border-top: 1px solid #ddd;
   padding: 0 10px;
 }
-.more-add-wrapper textarea{
+.more-add-wrapper textarea {
   background: #edeced;
   border: none;
   border-radius: 3px;
@@ -166,17 +229,17 @@ body{
   max-width: 100%;
   min-width: 100%;
 }
-.more-add-wrapper textarea.focus{
+.more-add-wrapper textarea.focus {
   background: #fbfbfb;
   -webkit-box-shadow: 1px 1px 5px #aaa;
-  -moz-box-shadow:  1px 1px 5px #aaa;
-  box-shadow:  1px 1px 5px #aaa;
+  -moz-box-shadow: 1px 1px 5px #aaa;
+  box-shadow: 1px 1px 5px #aaa;
   transition: all .2s;
 }
-.more-add-wrapper h4{
+.more-add-wrapper h4 {
   line-height: 36px;
 }
-.more-add-wrapper input{
+.more-add-wrapper input {
   background: #edeced;
   border: none;
   border-radius: 3px;
@@ -187,47 +250,67 @@ body{
   padding: 8px 10px;
   width: 100%;
 }
-.more-add-wrapper button{
-  background: #1E90FF;
+.more-add-wrapper .button-wrap {
+  font-size: 0;
+  margin: 10px 0;
+}
+.more-add-wrapper button {
   border: none;
   border-radius: 3px;
-  color: #fff;
-  margin: 10px 0;
-  height: 36px;
-  width: 100%;
-}
-.more-add-wrapper button:hover{
-  background: rgba(30,144,255,0.8);
   cursor: pointer;
+  font-size: 14px;
+  height: 36px;
+  width: 49%;
+}
+.more-add-wrapper button.complete {
+  background: #1E90FF;
+  color: #fff;
+  margin-right: 1%;
+}
+.more-add-wrapper button.complete:hover {
+  -webkit-box-shadow: 1px 1px 5px #0f2c59;
+  -moz-box-shadow: 1px 1px 5px #0f2c59;
+  box-shadow: 1px 1px 5px #0f2c59;
+  transition: all .2s;
+}
+.more-add-wrapper button.cancel {
+  background: #d1eeff;
+  color: #333;
+  margin-left: 1%;
+}
+.more-add-wrapper button.cancel:hover {
+  -webkit-box-shadow: 1px 1px 5px #7d93a4;
+  -moz-box-shadow: 1px 1px 5px #7d93a4;
+  box-shadow: 1px 1px 5px #7d93a4;
   transition: all .2s;
 }
 
-/*未完成列表组件*/
-.todo-list-wrapper{
-  border: 1px solid #ddd;
-  -webkit-box-shadow: 0px 0px 6px #cfcfcf;
-  -moz-box-shadow: 0px 0px 6px #cfcfcf;
-  box-shadow: 0px 0px 6px #cfcfcf;
-  margin: 30px 0 50px;
-}
-.todo-list-wrapper ul li{
-  background: #fff;
+/*列表组件 - 共用*/
+.done-list-wrapper ul li, .todo-list-wrapper ul li, .del-list-wrapper ul li {
+  background: #fafafa;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
+  /*基本信息*/
+  /*更多信息*/
 }
-.todo-list-wrapper ul li:last-child{
+.done-list-wrapper ul li:hover, .todo-list-wrapper ul li:hover, .del-list-wrapper ul li:hover {
+  background: #fff;
+  transition: all .1s;
+}
+.done-list-wrapper ul li:hover div.detail-info, .todo-list-wrapper ul li:hover div.detail-info, .del-list-wrapper ul li:hover div.detail-info {
+  background: #fafafa;
+  transition: all .1s;
+}
+.done-list-wrapper ul li:last-child, .todo-list-wrapper ul li:last-child, .del-list-wrapper ul li:last-child {
   border: none;
 }
-.todo-list-wrapper ul li:hover{
-  background: rgba(209, 236, 255, 0.94);
-}
-/*基本信息*/
-.todo-list-wrapper ul li div.base-info{
+.done-list-wrapper ul li div.base-info, .todo-list-wrapper ul li div.base-info, .del-list-wrapper ul li div.base-info {
   line-height: 40px;
-  padding: 0 120px 0 50px;
   position: relative;
+  /*标题*/
+  /*按钮*/
 }
-.todo-list-wrapper ul li div.base-info span{
+.done-list-wrapper ul li div.base-info .item-title, .todo-list-wrapper ul li div.base-info .item-title, .del-list-wrapper ul li div.base-info .item-title {
   box-sizing: border-box;
   cursor: default;
   display: block;
@@ -240,7 +323,7 @@ body{
   white-space: nowrap;
   width: 100%;
 }
-.todo-list-wrapper ul li div.base-info button{
+.done-list-wrapper ul li div.base-info button, .todo-list-wrapper ul li div.base-info button, .del-list-wrapper ul li div.base-info button {
   position: absolute;
   top: 0;
   height: 40px;
@@ -251,228 +334,62 @@ body{
   background-size: 50%;
   border: none;
   color: #666;
+  cursor: pointer;
   font-size: 20px;
   font-weight: 600;
   text-align: center;
+  /*勾选按钮*/
+  /*更多按钮*/
+  /*删除按钮*/
 }
-/*勾选按钮*/
-.todo-list-wrapper div.base-info button.done-btn{
+.done-list-wrapper ul li div.base-info button.done-btn, .todo-list-wrapper ul li div.base-info button.done-btn, .del-list-wrapper ul li div.base-info button.done-btn {
   font-size: 0;
   margin-left: 10px;
   left: 0;
 }
-.todo-list-wrapper div.base-info .done-btn i{
-  background-image: url("../img/right.png");
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 80%;
-  border: 1px solid #aaa;
-  border-radius: 50%;
-  display: inline-block;
-  vertical-align: middle;
-  height: 60%;
-  width: 60%;
-}
-.todo-list-wrapper div.base-info .done-btn:after{
+.done-list-wrapper ul li div.base-info button.done-btn:after, .todo-list-wrapper ul li div.base-info button.done-btn:after, .del-list-wrapper ul li div.base-info button.done-btn:after {
   content: '';
   display: inline-block;
   height: 100%;
   width: 0;
   vertical-align: middle;
 }
-.todo-list-wrapper div.base-info .done-btn:hover i{
-  background-color: #0785ff;
-  background-image: url("../img/right_hover.png");
-  border-color: #0785ff;
-  cursor: pointer;
-}
-/*更多按钮*/
-.todo-list-wrapper div.base-info .more-btn{
-  background-image: url("../img/more.png");
-  background-size: 60%;
-  right: 80px;
-}
-.todo-list-wrapper div.base-info .more-btn:hover{
-  background-image: url("../img/more_hover.png");
-  cursor: pointer;
-}
-/*编辑按钮*/
-.todo-list-wrapper div.base-info .edit-btn{
-  background-image: url("../img/brush.png");
-  right: 40px;
-}
-.todo-list-wrapper div.base-info .edit-btn:hover{
-  background-image: url("../img/brush_hover.png");
-  cursor: pointer;
-}
-/*删除按钮*/
-.todo-list-wrapper div.base-info .del-btn{
-  background-image: url("../img/empty.png");
-  right: 0px;
-}
-.todo-list-wrapper div.base-info .del-btn:hover{
-  background-image: url("../img/empty_hover.png");
-  cursor: pointer;
-}
-/*更多信息*/
-.todo-list-wrapper ul li div.detail-info{
-  background: #f9f9f9;
-  border-top: 1px dashed #ddd;
-  margin: 0 10px 10px;
-}
-.todo-list-wrapper ul li div.detail-info time{
-  color: #aaa;
-  display: block;
-  font-size: 12px;
-  height: 30px;
-  line-height: 30px;
-}
-.todo-list-wrapper time i.time{
-  background: transparent url("../img/time.png") no-repeat center center;
-  background-size: 90% 90%;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 6px;
-  height: 20px;
-  width: 20px;
-}
-.todo-list-wrapper time.expired i.time{
-  background-image: url("../img/time_expire.png");
-}
-.todo-list-wrapper time.alert i.time{
-  background-image: url("../img/time_alert.png");
-}
-.todo-list-wrapper time span{
-  vertical-align: middle;
-}
-.todo-list-wrapper time.expired span{
-  color: #dd422d;
-}
-.todo-list-wrapper time.alert span{
-  color: #1296db;
-}
-.todo-list-wrapper ul li div.detail-info p{
-  padding: 5px 10px 10px;
-}
-
-/*已完成列表*/
-.done-list-wrapper{
-  margin-bottom: 50px;
-}
-.done-list-wrapper header{
-  color: #666;
-  line-height: 40px;
-}
-.done-list-wrapper ul{
-  border: 1px solid #cecece;
-  -webkit-box-shadow: 0px 0px 6px #DEDEDE;
-  -moz-box-shadow: 0px 0px 6px #DEDEDE;
-  box-shadow: 0px 0px 6px #DEDEDE;
-}
-.done-list-wrapper ul li{
-  background: #fafafa;
-  border-bottom: 1px solid #ddd;
-  overflow: hidden;
-}
-.done-list-wrapper ul li:last-child{
-  border: none;
-}
-/*基本信息*/
-.done-list-wrapper ul li div.base-info{
-  line-height: 40px;
-  padding: 0 80px 0 50px;
-  position: relative;
-}
-.done-list-wrapper ul li del{
-  box-sizing: border-box;
-  cursor: default;
-  display: block;
-  color: #8a8a8a;
-  font-size: 14px;
-  height: 40px;
-  line-height: 30px;
-  padding: 5px 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-}
-.done-list-wrapper ul li button{
-  position: absolute;
-  top: 0;
-  height: 40px;
-  width: 40px;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 50%;
-  border: none;
-  color: #666;
-  font-size: 20px;
-  font-weight: 600;
-  height: 40px;
-  text-align: center;
-}
-/*完成按钮*/
-.done-list-wrapper div.base-info .done-btn{
-  font-size: 0;
-  margin-left: 10px;
-  left: 0;
-}
-.done-list-wrapper div.base-info .done-btn i{
-  background-image: url("../img/right_hover.png");
-  background-color: #a4a4a4;
+.done-list-wrapper ul li div.base-info button.done-btn i, .todo-list-wrapper ul li div.base-info button.done-btn i, .del-list-wrapper ul li div.base-info button.done-btn i {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 80%;
-  border: 1px solid #676767;
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
   height: 60%;
   width: 60%;
 }
-.done-list-wrapper div.base-info .done-btn:hover{
-  cursor: pointer;
-}
-.done-list-wrapper div.base-info .done-btn:hover i{
-  background-image: url("../img/right.png");
-  background-color: #dedede;
-}
-/*更多按钮*/
-.done-list-wrapper div.base-info .more-btn{
+.done-list-wrapper ul li div.base-info button.more-btn, .todo-list-wrapper ul li div.base-info button.more-btn, .del-list-wrapper ul li div.base-info button.more-btn {
   background-image: url("../img/more.png");
   background-size: 60%;
-  right: 40px;
 }
-.done-list-wrapper div.base-info .more-btn:hover{
+.done-list-wrapper ul li div.base-info button.more-btn:hover, .todo-list-wrapper ul li div.base-info button.more-btn:hover, .del-list-wrapper ul li div.base-info button.more-btn:hover {
   background-image: url("../img/more_hover.png");
-  cursor: pointer;
 }
-/*删除按钮*/
-.done-list-wrapper div.base-info .del-btn{
+.done-list-wrapper ul li div.base-info button.del-btn, .todo-list-wrapper ul li div.base-info button.del-btn, .del-list-wrapper ul li div.base-info button.del-btn {
   background-image: url("../img/empty.png");
-  right: 0px;
 }
-.done-list-wrapper div.base-info .del-btn:hover{
+.done-list-wrapper ul li div.base-info button.del-btn:hover, .todo-list-wrapper ul li div.base-info button.del-btn:hover, .del-list-wrapper ul li div.base-info button.del-btn:hover {
   background-image: url("../img/empty_hover.png");
-  cursor: pointer;
 }
-/*更多信息*/
-.done-list-wrapper ul li div.detail-info{
+.done-list-wrapper ul li div.detail-info, .todo-list-wrapper ul li div.detail-info, .del-list-wrapper ul li div.detail-info {
   background: #ffffff;
-  border-top: 1px dashed #ddd;
+  border: 1px dashed #ddd;
   margin: 0 10px 10px;
 }
-.done-list-wrapper ul li div.detail-info time{
+.done-list-wrapper ul li div.detail-info time, .todo-list-wrapper ul li div.detail-info time, .del-list-wrapper ul li div.detail-info time {
   color: #aaa;
   display: block;
   font-size: 12px;
   height: 30px;
   line-height: 30px;
 }
-.done-list-wrapper time i.time{
+.done-list-wrapper ul li div.detail-info time i.time, .todo-list-wrapper ul li div.detail-info time i.time, .del-list-wrapper ul li div.detail-info time i.time {
   background: transparent url("../img/time.png") no-repeat center center;
   background-size: 90% 90%;
   display: inline-block;
@@ -481,91 +398,190 @@ body{
   height: 20px;
   width: 20px;
 }
-.done-list-wrapper time.expired i.time{
+.done-list-wrapper ul li div.detail-info time.expired i.time, .todo-list-wrapper ul li div.detail-info time.expired i.time, .del-list-wrapper ul li div.detail-info time.expired i.time {
   background-image: url("../img/time_expire.png");
 }
-.done-list-wrapper time.alert i.time{
+.done-list-wrapper ul li div.detail-info time.alert i.time, .todo-list-wrapper ul li div.detail-info time.alert i.time, .del-list-wrapper ul li div.detail-info time.alert i.time {
   background-image: url("../img/time_alert.png");
 }
-.done-list-wrapper time.expired span{
-  color: #dd422d;
-}
-.todo-list-wrapper time.alert span{
-  color: #1296db;
-}
-.done-list-wrapper time span{
+.done-list-wrapper ul li div.detail-info time span, .todo-list-wrapper ul li div.detail-info time span, .del-list-wrapper ul li div.detail-info time span {
   vertical-align: middle;
 }
-.done-list-wrapper ul li div.detail-info p{
+.done-list-wrapper ul li div.detail-info time.expired span, .todo-list-wrapper ul li div.detail-info time.expired span, .del-list-wrapper ul li div.detail-info time.expired span {
+  color: #dd422d;
+}
+.done-list-wrapper ul li div.detail-info time.alert span, .todo-list-wrapper ul li div.detail-info time.alert span, .del-list-wrapper ul li div.detail-info time.alert span {
+  color: #1296db;
+}
+.done-list-wrapper ul li div.detail-info p, .todo-list-wrapper ul li div.detail-info p, .del-list-wrapper ul li div.detail-info p {
   padding: 5px 10px 10px;
 }
 
-/*提醒组件*/
-.clock-wrapper{
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
+/*未完成列表组件*/
+.todo-list-wrapper {
+  margin: 30px 0 50px;
 }
-.clock-wrapper i.clock-btn{
-  background: transparent url("../img/clock.png") no-repeat center center;
-  background-size: 80% 80%;
-  display: block;
-  position: relative;
-  height: 60px;
-  width: 60px;
+.todo-list-wrapper ul {
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 0 6px #cfcfcf;
+  -moz-box-shadow: 0 0 6px #cfcfcf;
+  box-shadow: 0 0 6px #cfcfcf;
 }
-.clock-wrapper i.clock-btn.alert{
-  background-image: url("../img/clock_alert.png");
+.todo-list-wrapper ul li {
+  /*基本信息*/
+  /*更多信息*/
 }
-.clock-wrapper i.clock-btn:hover{
-  background-image: url("../img/clock_hover.png");
-  cursor: pointer;
-  transition: all .2s;
+.todo-list-wrapper ul li div.base-info {
+  padding: 0 120px 0 50px;
 }
-.clock-wrapper i.clock-btn.alert:hover{
-  background-image: url("");
+.todo-list-wrapper ul li div.base-info button {
+  /*勾选按钮*/
+  /*更多按钮*/
+  /*编辑按钮*/
+  /*删除按钮*/
 }
-.clock-wrapper i.clock-btn span{
-  background: #f5ab00;
-  border-radius: 50%;
-  color: #fff;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 20px;
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  text-align: center;
+.todo-list-wrapper ul li div.base-info button.done-btn {
+  font-size: 0;
+  margin-left: 10px;
+  left: 0;
+}
+.todo-list-wrapper ul li div.base-info button.done-btn i {
+  background-color: #fff;
+  background-image: url("../img/right_black.png");
+  border: 1px solid #aaa;
+}
+.todo-list-wrapper ul li div.base-info button.done-btn:hover i {
+  background-color: #0785ff;
+  background-image: url("../img/right_white.png");
+  border-color: #0785ff;
+}
+.todo-list-wrapper ul li div.base-info button.more-btn {
+  right: 80px;
+}
+.todo-list-wrapper ul li div.base-info button.edit-btn {
+  background-image: url("../img/brush.png");
+  right: 40px;
+}
+.todo-list-wrapper ul li div.base-info button.edit-btn:hover {
+  background-image: url("../img/brush_hover.png");
+}
+.todo-list-wrapper ul li div.base-info button.del-btn {
+  right: 0px;
+}
+
+/*已完成列表*/
+.done-list-wrapper {
+  margin-bottom: 50px;
+}
+.done-list-wrapper header {
+  color: #666;
+  line-height: 40px;
+}
+.done-list-wrapper ul {
+  border: 1px solid #cecece;
+  -webkit-box-shadow: 0 0 6px #DEDEDE;
+  -moz-box-shadow: 0 0 6px #DEDEDE;
+  box-shadow: 0 0 6px #DEDEDE;
+}
+.done-list-wrapper ul li {
+  /*基本信息*/
+  /*更多信息*/
+}
+.done-list-wrapper ul li div.base-info {
+  padding: 0 80px 0 50px;
+}
+.done-list-wrapper ul li div.base-info del.item-title {
+  color: #8a8a8a;
+}
+.done-list-wrapper ul li div.base-info button {
+  /*勾选按钮*/
+  /*更多按钮*/
+  /*删除按钮*/
+}
+.done-list-wrapper ul li div.base-info button.done-btn i {
+  background-color: #a4a4a4;
+  background-image: url("../img/right_white.png");
+  border: 1px solid #676767;
+}
+.done-list-wrapper ul li div.base-info button.done-btn:hover i {
+  background-color: #dedede;
+  background-image: url("../img/right_black.png");
+}
+.done-list-wrapper ul li div.base-info button.more-btn {
+  right: 40px;
+}
+.done-list-wrapper ul li div.base-info button.del-btn {
+  right: 0px;
+}
+
+/*已删除列表*/
+.del-list-wrapper {
+  margin-bottom: 50px;
+}
+.del-list-wrapper header {
+  color: #666;
+  line-height: 40px;
+}
+.del-list-wrapper ul {
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 0 6px #cfcfcf;
+  -moz-box-shadow: 0 0 6px #cfcfcf;
+  box-shadow: 0 0 6px #cfcfcf;
+}
+.del-list-wrapper ul li div.base-info {
+  padding: 0 80px 0 50px;
+}
+.del-list-wrapper ul li div.base-info del.item-title {
+  color: #8a8a8a;
+}
+.del-list-wrapper ul li div.base-info button {
+  /*撤回按钮*/
+  /*更多按钮*/
+  /*删除按钮*/
+}
+.del-list-wrapper ul li div.base-info button.done-btn i {
+  background-color: #585858;
+  background-image: url("../img/undo.png");
+  border: 1px solid #676767;
+}
+.del-list-wrapper ul li div.base-info button.done-btn:hover i {
+  background-color: #dedede;
+  background-image: url("../img/undo_hover.png");
+}
+.del-list-wrapper ul li div.base-info button.more-btn {
+  right: 40px;
+}
+.del-list-wrapper ul li div.base-info button.undo-btn {
+  background-image: url("../img/delete.png");
+  right: 0;
+}
+.del-list-wrapper ul li div.base-info button.undo-btn:hover {
+  background-image: url("../img/delete_fill.png");
 }
 
 /*垃圾桶组件*/
-.rubbish-wrapper{
+.rubbish-wrapper {
   position: fixed;
   bottom: 30px;
   right: 30px;
 }
-.rubbish-wrapper i.rubbish-btn{
+.rubbish-wrapper i.rubbish-btn {
   background: transparent url("../img/trash.png") no-repeat center center;
-  background-size: 80% 80%;
+  background-size: cover;
   display: block;
   position: relative;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 40px;
 }
-.rubbish-wrapper i.rubbish-btn.fill{
+.rubbish-wrapper i.rubbish-btn.fill {
   background-image: url("../img/trash_fill.png");
 }
-.rubbish-wrapper i.rubbish-btn:hover{
+.rubbish-wrapper i.rubbish-btn:hover {
   background-image: url("../img/trash_hover.png");
   cursor: pointer;
   transition: all .2s;
 }
-.rubbish-wrapper i.rubbish-btn.fill:hover{
-  background-image: url("");
-}
-.rubbish-wrapper i.rubbish-btn span{
+.rubbish-wrapper i.rubbish-btn span {
   background: #ff5989;
   border-radius: 50%;
   color: #fff;
@@ -575,7 +591,9 @@ body{
   height: 20px;
   width: 20px;
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -15px;
+  right: -15px;
   text-align: center;
 }
+
+/*# sourceMappingURL=index.css.map */
