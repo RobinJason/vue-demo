@@ -30,6 +30,9 @@ Vue.component('add-input',{
     },
     appendItem(){   //提交数据到root里
       let item = {};
+      if (!this.item.title) {
+        return;
+      }
       for(let i in this.item){
         item[i] = this.item[i];
       }
@@ -201,6 +204,7 @@ Vue.component('del-list',{
       let str = index%2 === 0 ? 'Done': 'Todo';
       eventBus.$emit ('cancel' + str + 'Delete', this.delList[index]); // 把项目送回todo或done数组
       this.$options.methods.deleteItemBtn (index, this);
+      this.$parent.changeAlertList();
     },
     deleteItemBtn (index, vm) { // 删除todo项，并把此项设置为空字符串，变为稀疏数组
       let that = vm || this;
@@ -281,9 +285,7 @@ Vue.component('alert',{
   template: '#alert',
   props: ['alertList'],
   data(){
-    return {
-
-    }
+    return {}
   }
 });
 // header root
@@ -380,7 +382,7 @@ new Vue({
       del: [
         {
           title: '用烤箱做一个蛋糕🎂',
-          content: '美滋滋~',
+          content: '美味的蛋糕~',
           date: '',
           isExpire: 0
         },

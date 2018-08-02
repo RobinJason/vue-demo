@@ -37,7 +37,7 @@
   <template id="add-input" >
     <div class="add-wrapper">
       <div class="base-add-wrapper">
-        <input type="text" placeholder="新增一个todo项目" v-model="item.title" :class="{focus: isInputFocus}" v-on="{ focus: inputFocus,blur: inputFocus }"/>
+        <input type="text" placeholder="新增一个todo项目" v-model.trim="item.title" :class="{focus: isInputFocus}" v-on="{ focus: inputFocus,blur: inputFocus }"/>
         <button class="icon add-btn" type="button" @click="isExtendDetail"></button>
       </div>
       <div class="more-add-wrapper" v-show="isMoreShow">
